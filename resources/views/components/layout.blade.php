@@ -20,7 +20,7 @@
 <body>
     <div class="container-fluid">
         <x-navbartop />
-        <div class="row">
+        <div class="row d-flex mx-auto">
             <x-navbar />
 
             {{ $slot }}

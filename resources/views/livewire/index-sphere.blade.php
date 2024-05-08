@@ -9,47 +9,58 @@
                     {{-- Intestazione --}}
                     <div class="row d-flex justify-content-evenly align-items-center">
 
-                        <div class="col-12 d-flex justify-content-evenly align-items-center mx-auto">
+                        <div class="col-12 d-flex justify-content-evenly align-items-center ">
 
                             {{-- img --}}
-                            <div class="col-2 p-3 mt-3">
-                                <img src="{{ Auth::user()->img }}" alt="" width="50"
-                                    class="rounded-circle d-block mx-auto">
+                            <div>
+                                <img src="{{ $sphere->user->img }}" alt="" width="45"
+                                    class="rounded-circle d-block mx-auto ">
                             </div>
+
+
 
                             {{-- nome utente --}}
-                            <div class="col-7 mt-3">
-                                <a href="{{ route('profilo.show', $sphere->user->id) }}"
-                                    class="text-decoration-none text-white">
-                                    <h5 class="card-title roboto-slab">{{ $sphere->user->name }}</h5>
-                                </a>
+
+                            <a href="{{ route('profilo.show', $sphere->user->id) }}"
+                                class="text-decoration-none text-white pt-3 ">
+                                <h5 class="card-title roboto-slab">{{ $sphere->user->name }}</h5>
+
+
+                                @if ($sphere->updated_at == $sphere->created_at)
+                                    <p><small>Creato il: {{ $sphere->created_at->format('d/m/Y') }}</small></p>
+                                @else
+                                    <p><small>Modificato il: {{ $sphere->updated_at->format('d/m/Y') }}</small></p>
+                                @endif
+                            </a>
+
+
+                            {{-- bottone --}}
+                            <div class="mt-3 btn-group">
+                                @if (Auth::user()->id == $sphere->user->id)
+                                    <button class="btn btn-sm" type="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="bi bi-three-dots fs-4"></i>
+                                    </button>
+                                    <ul class="dropdown-menu text-center">
+                                        <li class="d-flex mx-auto">
+                                            <a href={{ route('edit.sphere', compact('sphere')) }} class="dropdown-item">
+                                                <i class="bi bi-pencil-square"></i>
+                                                <p><small>Modifica</small></p>
+                                            </a>
+                                        </li>
+
+                                        <li class="d-flex mx-auto">
+                                            <button wire:click="destroy({{ $sphere }})" class="dropdown-item">
+                                                <i class="bi bi-trash3-fill"></i>
+                                                <p><small>Elimina</small></p>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                @endif
                             </div>
                         </div>
 
-                        <div class=" col-2 mt-3 btn-group">
-                            @if (Auth::user()->id == $sphere->user->id)
-                                <button class="btn btn-sm" type="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-three-dots fs-4"></i>
-                                </button>
-                                <ul class="dropdown-menu text-center">
-                                    <li class="d-flex mx-auto">
-                                        <a href={{ route('edit.sphere', compact('sphere')) }} class="dropdown-item">
-                                            <i class="bi bi-pencil-square"></i>
-                                            <p><small>Modifica</small></p>
-                                        </a>
-                                    </li>
 
-                                    <li class="d-flex mx-auto">
-                                        <button wire:click="destroy({{ $sphere }})" class="dropdown-item">
-                                            <i class="bi bi-trash3-fill"></i>
-                                            <p><small>Elimina</small></p>
-                                        </button>
-                                    </li>
-                                </ul>
-                            @endif
-
-                        </div>
 
                     </div>
 

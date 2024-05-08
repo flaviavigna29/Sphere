@@ -68,6 +68,11 @@
     z-index: 2;
 }
 
+.sticky3 {
+    position: sticky;
+    top: 50px;
+}
+
 @media screen and (min-width:992px) {
     .sticky2 {
         top: 0px;
@@ -75,9 +80,12 @@
 }
 
 .bg_col {
-    background-image: url(/public/storage/img//col3.png);
-    background-repeat: repeat-y;
-    background-size: cover;
+    background-image: url(/public/storage/img/col3.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100vh;
+
 
 }
 
@@ -93,6 +101,7 @@
     .img_rotate {
         width: 60%;
     }
+
     .logo {
         width: 50%;
     }
@@ -102,6 +111,7 @@
     .img_rotate {
         width: 80%;
     }
+
     .logo {
         width: 80%;
     }
